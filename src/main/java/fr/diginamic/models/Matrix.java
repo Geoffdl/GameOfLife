@@ -12,7 +12,7 @@ public class Matrix {
 
     public void setCell(String lifeState, int x, int y) {
         if (x >= 0 && x < matrix.length && y >= 0 && y < matrix[0].length) {
-            matrix[x][y] = lifeState;
+            matrix[y][x] = lifeState;
         }
     }
 

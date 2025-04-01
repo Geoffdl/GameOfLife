@@ -1,9 +1,11 @@
 package fr.diginamic;
 
+import fr.diginamic.lifeforms.Blinker;
 import fr.diginamic.lifeforms.Glider;
 import fr.diginamic.lifeforms.Lifeforms;
-import fr.diginamic.models.Life;
+import fr.diginamic.lifeforms.Oscillator;
 import fr.diginamic.models.Matrix;
+import fr.diginamic.utils.InputValidator;
 import fr.diginamic.utils.MatrixTools;
 import fr.diginamic.utils.MenuDisplay;
 
@@ -11,8 +13,8 @@ import java.util.Scanner;
 
 public class GameOfLife
 {
-    public static final int HEIGHT = 10;
-    public static final int WIDTH = 10;
+    public static final int HEIGHT = 20;
+    public static final int WIDTH = 20;
     public static final String DEAD = " ";
     public static final String ALIVE = "X";
 
@@ -27,8 +29,8 @@ public class GameOfLife
 
         //chose starting shape
         Lifeforms chosenShape;
-        MenuDisplay.choseForm();
-        int choice = sc.nextInt();
+        MenuDisplay.startMenu();
+        int choice = InputValidator.userInputInt(sc);
         switch (choice)
         {
             case 1:
@@ -36,29 +38,43 @@ public class GameOfLife
                 chosenShape.generate(lifeBoard, sc);
                 break;
             case 2:
-                chosenShape = new Glider();
+                chosenShape = new Blinker();
                 chosenShape.generate(lifeBoard, sc);
                 break;
             case 3:
-                chosenShape = new Glider();
+                chosenShape = new Oscillator();
                 chosenShape.generate(lifeBoard, sc);
                 break;
         }
-
-
-        while (true)
+        boolean running = true;
+        int gen = 0;
+        do
         {
-            sc.nextLine();
 
+            System.out.printf("\n-------- Generation number %d -------- \n", gen);
             MatrixTools.displayBoard(lifeBoard);
+            MenuDisplay.nextGenPrompt();
+            choice = InputValidator.userInputInt(sc);
+            switch (choice)
+            {
+                case 1:
+                    break;
+                case 2:
+                    lifeBoard = MenuDisplay.changeShape(lifeBoard,sc);
+                    MatrixTools.displayBoard(lifeBoard);
+                    System.out.println("Enter to continue . . . ");
+                    sc.nextLine();
+                    gen = 0;
+                    break;
+                case 3:
+                    running = false;
 
-            System.out.println("Press enter to advance to next generation");
-            sc.nextLine();
+            }
+
+
             lifeBoard = MatrixTools.advance(lifeBoard);
-            MatrixTools.displayBoard(lifeBoard);
-
-
-        }
+            gen++;
+        } while (running);
     }
 
 }

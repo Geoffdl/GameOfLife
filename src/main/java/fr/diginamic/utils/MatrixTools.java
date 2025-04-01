@@ -1,6 +1,5 @@
 package fr.diginamic.utils;
 
-import fr.diginamic.GameOfLife;
 import fr.diginamic.models.Life;
 import fr.diginamic.models.Matrix;
 
