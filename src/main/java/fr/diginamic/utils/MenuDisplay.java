@@ -16,7 +16,7 @@ public class MenuDisplay
         System.out.println(" \nChose a shape to get started\n");
         System.out.println("\t1. The glider, the most simple moving shape in the Game of Life ");
         System.out.println("\t2. The blinker, a very simple oscillator");
-        System.out.println("3. The Pentadecathlon, a more advanced oscillator");
+        System.out.println("\t3. The Pentadecathlon, a more advanced oscillator");
         System.out.println("\t4. The Gosper glider gun, the first discovered life generating factory!");
         System.out.println("\t5. Exit");
         System.out.print("\nMake your choice :");
