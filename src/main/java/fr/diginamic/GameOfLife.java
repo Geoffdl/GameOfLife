@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class GameOfLife
 {
-    public static final int HEIGHT = 20;
+    public static final int HEIGHT = 30;
     public static final int WIDTH = 20;
     public static final String DEAD = " ";
     public static final String ALIVE = "X";
@@ -25,8 +25,6 @@ public class GameOfLife
         Matrix lifeBoard = new Matrix(HEIGHT, WIDTH);
 
         MatrixTools.initializeBoard(lifeBoard);
-
-
         //chose starting shape
         Lifeforms chosenShape;
         MenuDisplay.startMenu();
@@ -50,7 +48,6 @@ public class GameOfLife
         int gen = 0;
         do
         {
-
             System.out.printf("\n-------- Generation number %d -------- \n", gen);
             MatrixTools.displayBoard(lifeBoard);
             MenuDisplay.nextGenPrompt();
@@ -70,8 +67,6 @@ public class GameOfLife
                     running = false;
 
             }
-
-
             lifeBoard = MatrixTools.advance(lifeBoard);
             gen++;
         } while (running);
